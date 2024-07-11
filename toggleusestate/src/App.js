@@ -1,20 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+
+
 
 const Allmenu = styled.button`
 font-family: 'bootstrap-icons';
 background-color: white;
 border: 0px;
-  &:before{
+  &.close:before{
     content : '\\F479';
     font-size : 30px;
   }
-`
-const Closemenu = styled.button`
-font-family: 'bootstrap-icons';
-background-color: white;
-border: 0px;
   &:before{
     content : '\\F62A';
     font-size : 30px;
@@ -22,13 +19,19 @@ border: 0px;
 `
 
 function App() {
-  const [allmenu, setAllmenu] = useState(false);
+// 렌더링 html이 생성완료된 시점
+// window.onload와 같은 개념
+// 웹으로 제작한 자바스크립트 여기에 넣어준다
+  useEffect(() => {
+    document.querySelector('#allMenu').addEventListener("click",function(){
+      this.classList.toggle('close')
+    })
+  }, [])
+  
   return (
     <div className="App">
-      <div onClick={() => setAllmenu(!allmenu)}>
-        {
-          allmenu ? <Closemenu /> : <Allmenu />
-        }
+      <div>
+        <Allmenu className="close" id="allMenu"></Allmenu>
       </div>
     </div>
   );
