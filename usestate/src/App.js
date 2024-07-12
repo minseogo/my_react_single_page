@@ -14,6 +14,7 @@ function App() {
 
 
   return (
+    <>
     <div className="App">
     <button onClick={()=>{
       setCount(count < bgcolor.length -1 ? count + 1 : 0); // 값에 대한 연산식만 사용가능 (대입식 사용불가 ex) count++, count=count+1))
@@ -23,6 +24,19 @@ function App() {
       setCount(count > 0 ? count - 1 : bgcolor.length - 1); 
     }}> {count} 감소해줘</button>
     </div>
+    <div>
+      {/* <button>1</button><button>2</button><button>3</button> */}
+      {
+        // this의 여부에 따라서 화살표 함수 사용 결정
+        bgcolor.map((v, i)=>{
+          return (
+            <button onClick={()=>{setCount(i)}}>{v}</button>
+          )
+        })
+      }
+    </div>
+    </>
+ 
   );
 }
 
